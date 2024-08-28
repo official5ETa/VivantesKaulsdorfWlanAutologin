@@ -1,0 +1,5 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="index" type="NodeJSConfigurationType" path-to-js-file="$PROJECT_DIR$/src/index.mjs" working-dir="$PROJECT_DIR$/src">
+    <method v="2" />
+  </configuration>
+</component>
