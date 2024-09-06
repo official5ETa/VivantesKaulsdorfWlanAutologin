@@ -1,5 +1,6 @@
 import fetch from 'node-fetch';
 import puppeteer from 'puppeteer';
+import { existsSync } from 'node:fs';
 
 function log(type, ...args) {
   const date = new Date;
@@ -14,7 +15,10 @@ async function interval() {
     const response = await fetch('https://login.lan1.de/', { redirect: 'manual' });
 
     if (response.headers.get('location').endsWith('/login')) {
-      browser = await puppeteer.launch({ headless: true });
+      browser = await puppeteer.launch({
+        headless: true,
+        ...(existsSync('/usr/bin/google-chrome-stable') ? { executablePath: '/usr/bin/google-chrome-stable' } : {})
+      });
       const page = (await browser.pages())[0] || await browser.newPage();
 
       await page.goto(response.url);
